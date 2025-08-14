@@ -5,6 +5,28 @@ import { BuildOptions } from "./types/types";
 export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
   const isDev = options.mode === "development";
 
+  const svgrLoader = {
+    test: /\.svg$/,
+    use: [
+      {
+        loader: "@svgr/webpack",
+        options: {
+          icon: true,
+          svgoConfig: {
+            plugins: [
+              {
+                name: "convertColors",
+                params: {
+                  currentColor: true,
+                },
+              },
+            ],
+          },
+        },
+      },
+    ],
+  };
+
   const cssLoaderWithModules = {
     loader: "css-loader",
     options: {
@@ -12,6 +34,11 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
         localIdentName: isDev ? "[path][name]__[local]" : "[hash:base64:8]",
       },
     },
+  };
+
+  const assetsLoader = {
+    test: /\.(png|jpg|gif)$/i,
+    type: "asset/resource",
   };
 
   const styleLoader = {
@@ -25,9 +52,15 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
 
   const tsLoader = {
     test: /\.tsx?$/,
-    use: "ts-loader",
+    use: [
+      {
+        loader: "ts-loader",
+        options: {
+          transpileOnly: true,
+        },
+      },
+    ],
     exclude: /node_modules/,
   };
-
-  return [styleLoader, tsLoader];
+  return [svgrLoader, assetsLoader, styleLoader, tsLoader];
 }
