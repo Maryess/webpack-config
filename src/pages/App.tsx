@@ -13,14 +13,14 @@ export const App = () => {
 
   TODO(1231);
 
-  if (__PLATFORM__ === "desktop") {
-    return <div>DESKTOP</div>;
-  } else if (__PLATFORM__ === "mobile") {
-    return <div>MOBILE</div>;
-  }
+  // if (__PLATFORM__ === "desktop") {
+  //   return <div>DESKTOPfdfd</div>;
+  // } else if (__PLATFORM__ === "mobile") {
+  //   return <div>MOBILE</div>;
+  // }
 
   return (
-    <div>
+    <div data-testid={"App.DataTestId"}>
       <h1>PlATFORM={__PLATFORM__} </h1>
       <h3>{state}</h3>
       {/* <button
@@ -38,6 +38,9 @@ export const App = () => {
         width={200}
         height={200}
       />
+      <p>fdffdfdfdfd</p>
+      <p>fdffdfdfsfsfs</p>
+      <p>ewewewfdfdfd</p>
       <Outlet />
     </div>
   );

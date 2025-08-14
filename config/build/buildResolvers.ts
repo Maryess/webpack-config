@@ -1,7 +1,5 @@
 import { Configuration } from "webpack";
-import { BuildOptions, BuildPath } from "./types/types";
-import { lazy } from "react";
-import path from "path";
+import { BuildOptions } from "./types/types";
 
 export function buildResolvers(
   options: BuildOptions
@@ -9,7 +7,7 @@ export function buildResolvers(
   return {
     extensions: [".tsx", ".ts", ".js", ".css", ".scss"],
     alias: {
-      "@": options.path.src,
+      "@": options.paths.src,
     },
   };
 }

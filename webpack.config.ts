@@ -20,11 +20,12 @@ export default (env: EnvVariables) => {
     output: path.resolve(__dirname, "build"),
     html: path.resolve(__dirname, "public", "index.html"),
     src: path.resolve(__dirname, "src"),
+    public: path.resolve(__dirname, "public"),
   };
   const config: webpack.Configuration = buildWebpack({
     port: env.port ?? 3000,
     mode: env.mode ?? "development",
-    path: paths,
+    paths: paths,
     analyzeActive: env.analyzeActive,
     platform: env.platform ?? "desktop",
   });

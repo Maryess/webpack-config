@@ -1,9 +1,13 @@
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import ReactRefreshTypeScript from "react-refresh-typescript";
 import { ModuleOptions } from "webpack";
+import { buildBabelConfig } from "./babel/buildBabelLoader";
 import { BuildOptions } from "./types/types";
 
 export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
   const isDev = options.mode === "development";
+
+  const babelLoader = buildBabelConfig(options);
 
   const svgrLoader = {
     test: /\.svg$/,
@@ -57,10 +61,13 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
         loader: "ts-loader",
         options: {
           transpileOnly: true,
+          getCustomTransformers: () => ({
+            before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
+          }),
         },
       },
     ],
     exclude: /node_modules/,
   };
-  return [svgrLoader, assetsLoader, styleLoader, tsLoader];
+  return [svgrLoader, assetsLoader, styleLoader, babelLoader]; //tsLoader;
 }

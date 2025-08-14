@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebpack_learn=self.webpackChunkwebpack_learn||[]).push([[201],{201:(e,a,n)=>{n.r(a),n.d(a,{About:()=>t});var t=function(){return React.createElement("div",null,"About")}}}]);

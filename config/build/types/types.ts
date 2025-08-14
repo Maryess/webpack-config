@@ -6,11 +6,12 @@ export interface BuildPath {
   output: string;
   html: string;
   src: string;
+  public: string;
 }
 
 export interface BuildOptions {
   port: number;
-  path: BuildPath;
+  paths: BuildPath;
   mode: BuildMode;
   analyzeActive?: boolean;
   platform: BuildPlatform;
