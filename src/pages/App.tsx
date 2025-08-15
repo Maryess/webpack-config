@@ -38,9 +38,7 @@ export const App = () => {
         width={200}
         height={200}
       />
-      <p>fdffdfdfdfd</p>
-      <p>fdffdfdfsfsfs</p>
-      <p>ewewewfdfdfd</p>
+
       <Outlet />
     </div>
   );

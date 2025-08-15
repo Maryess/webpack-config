@@ -17,7 +17,7 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
       filename: "[name].[contenthash].js",
       clean: true,
     },
-    devtool: isDev ? "inline-source-map" : false,
+    devtool: isDev ? "eval-source-map" : false,
     devServer: buildDevServer(options),
     module: {
       rules: buildLoaders(options),
